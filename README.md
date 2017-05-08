@@ -64,7 +64,27 @@ The following optional variables can be used when building the image:
 - NEXUS_VERSION: Version of the Nexus Repository Manager
 - NEXUS_DOWNLOAD_URL: Download URL for Nexus Repository, alternative to using `NEXUS_VERSION` to download from Sonatype
 - NEXUS_DOWNLOAD_SHA256_HASH: Sha256 checksum for the downloaded Nexus Repository Manager archive. Required if `NEXUS_VERSION`
- or `NEXUS_DOWNLOAD_URL` is provided
+or `NEXUS_DOWNLOAD_URL` is provided
+
+## Building the Nexus Repository Manager image with Apt respository plugin and S3 blobstore plugin builtin.
+
+In order to build this image, ensure you have checked out and initialized the submodules in the `plugins/` directory:
+
+```
+git submodule init
+git submodule update
+```
+
+The `plugins/` directory contains the repositories for the Nexus Apt and S3 blobstore plugins.
+
+The `Dockerfile.with_apt_s3_blobstore` pulls in the plugin `jar` files from `target/` and integrates them into the image. The `docker-compose.with_apt_s3_blobstore.yml` uses `docker-compose`
+on the `Dockerfile.with_apt_s3_blobstore` file to manage building and running it.
+
+Build and run the plugin builders followed by the Nexus docker image that includes them (if they are already built, you will have to use `docker-compose build` to force a build followed by `docker-compose up`):
+
+```
+docker-compose --file docker-compose.with_apt_s3_blobstore.yml up nexus3
+```
 
 ## Chef Solo for Runtime and Application
 

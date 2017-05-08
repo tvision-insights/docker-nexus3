@@ -1,0 +1,6 @@
+[submodule "plugins/nexus-blobstore-s3"]
+	path = plugins/nexus-blobstore-s3
+	url = https://github.com/sonatype/nexus-blobstore-s3.git
+[submodule "plugins/nexus-repository-apt"]
+	path = plugins/nexus-repository-apt
+	url = https://github.com/sonatype-nexus-community/nexus-repository-apt.git

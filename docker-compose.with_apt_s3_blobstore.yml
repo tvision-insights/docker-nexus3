@@ -1,0 +1,21 @@
+version: "2"
+
+services:
+  nexus3:
+    build:
+      context: ./
+      dockerfile: Dockerfile.with_apt_s3_blobstore
+    image: nexus3:with_apt_s3_blobstore
+    restart: unless-stopped
+    container_name: nexus3
+    volumes:
+      - "${NEXUS_DATA_DIR}:/nexus-data"
+    ports:
+      # Nexus
+      - "8081:8081"
+      # Docker repos
+      - "5000:5000"
+      - "5001:5001"
+      - "5002:5002"
+      - "5003:5003"
+      - "5004:5004"
