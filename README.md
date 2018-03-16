@@ -78,12 +78,12 @@ git submodule update
 The `plugins/` directory contains the repositories for the Nexus Apt and S3 blobstore plugins.
 
 The `Dockerfile.with_apt_s3_blobstore` pulls in the plugin `jar` files from `target/` and integrates them into the image. The `docker-compose.with_apt_s3_blobstore.yml` uses `docker-compose`
-on the `Dockerfile.with_apt_s3_blobstore` file to manage building and running it.
+on the `Dockerfile.with_apt_s3_blobstore` file to manage building and running it. Note that this docker-compose file uses a file system volume mount instead of a container volume, see the main `docker-compose.yml` and change accordingly if you would like a container volume.
 
-Build and run the plugin builders followed by the Nexus docker image that includes them (if they are already built, you will have to use `docker-compose build` to force a build followed by `docker-compose up`):
+Build and run the plugin builders followed by the Nexus docker image that includes the plugins (if the image is already built, you will have to use `docker-compose build` to force a build followed by `docker-compose up`):
 
 ```
-docker-compose --file docker-compose.with_apt_s3_blobstore.yml up nexus3
+NEXUS_DATA_DIR=/srv/nexus/nexus-data docker-compose --file docker-compose.with_apt_s3_blobstore.yml up nexus3
 ```
 
 ## Chef Solo for Runtime and Application
