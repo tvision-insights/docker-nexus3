@@ -18,7 +18,7 @@ ARG NEXUS_VERSION=3.9.0-01
 COPY ./plugins/nexus-blobstore-s3 /nexus-blobstore-s3/
 
 RUN cd /nexus-blobstore-s3/                                            && \
-    sed -i "s/3.8.0-02/${NEXUS_VERSION}/g" /nexus-blobstore-s3/pom.xml && \
+    sed -i "s/3.5.1-02/${NEXUS_VERSION}/g" /nexus-blobstore-s3/pom.xml && \
     mvn package
 
 FROM maven:3-jdk-8-alpine AS nexus_repository_apt_build
