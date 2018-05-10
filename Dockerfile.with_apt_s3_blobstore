@@ -78,7 +78,7 @@ RUN curl -L https://www.getchef.com/chef/install.sh | bash \
     && rm -rf /var/chef
 
 ARG NEXUS_REPOSITORY_APT_VERSION=1.0.5
-ARG NEXUS_S3_BLOBSTORE_VERSION=1.2.1-SNAPSHOT
+ARG NEXUS_S3_BLOBSTORE_VERSION=1.0.1-SNAPSHOT
 
 RUN mkdir -p ${NEXUS_HOME}/system/net/staticsnow/nexus-repository-apt/${NEXUS_REPOSITORY_APT_VERSION}/ \
              ${NEXUS_HOME}/system/org/sonatype/nexus/nexus-blobstore-s3/${NEXUS_S3_BLOBSTORE_VERSION}/
